@@ -6,8 +6,8 @@ class Checkout
   def initialize
     @products = product
     # @promotional_disc
-    @total = total
     @basket = []
+    @total = 0.00
   end
 
   def product
@@ -22,10 +22,15 @@ class Checkout
     @basket.push(item_code)
   end
 
-  def total_cost
-    @cart.each do |code|
-      product = product.detect { |obj| obj[:product][:code] == code }
-      @total_value += product[:product][:price]
-    end
+  def cart
+    @basket.push(product)
+
+  def price_objects
+    product.select { |obj| obj[:item][:price] }
   end
+
+  def total
+      iterate_scan = @basket.group_by(&:itself).map { |k,v| [k, v.count] }.to_h[1]
+    end
+end
 end
