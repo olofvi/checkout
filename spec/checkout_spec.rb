@@ -11,7 +11,7 @@ describe Checkout do
     expect(subject.basket).to eq expected_output
   end
 
-  it 'it should return total of products in basket' do
+  it 'it should return total of product code in basket' do
     expected_output = [1, 2]
     subject.scan(1)
     subject.scan(2)
@@ -19,9 +19,8 @@ describe Checkout do
   end
 
   it 'it should return total cost of products in basket' do
-    expected_output = 54.25
-    subject.scan(1)
-    subject.scan(2)
+    expected_output = 9.25
+    subject.cart(1)
     expect(subject.total).to eq expected_output
   end
 end

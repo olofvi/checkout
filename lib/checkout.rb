@@ -22,7 +22,14 @@ class Checkout
     @basket.push(item_code)
   end
 
-  def total_cost
-    product.inject(0) { |total, (k, v)| total + v.last }
+  def cart(product)
+    @basket.push(product)
+  end
+
+    def total_cost
+      cart.each do |code|
+         product = @products.detect { |obj| obj[:product][:code] == code }
+        @total_value += product[:product][:price]
+      end
   end
 end
