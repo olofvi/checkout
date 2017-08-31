@@ -1,19 +1,24 @@
+require 'yaml'
+
 class Checkout
   attr_accessor :products, :basket, :promotional_disc, :total
 
   def initialize
-    @products={001=>['Lavender heart' => 9.53], 002=>['Personalised cufflinks'=> 45.00], 003=>['Kids T-shirt'=> 19.95]}
-    @basket=[]
+    @products=product
     # @promotional_disc
     @total=total
   end
 
+  def scan
+    @products.detect
+    @basket << 
 
-  # def scan
-  #   basket << products
-  # end
-  #
-  # def total
-  #   total_products = 0
-  # end
+  def total
+    total = @basket.inject(0) { |sum, item| sum + item[:price] }
+    end
+  end
+
+  def product
+    YAML.load_file('./lib/products.yml')
+  end
 end

@@ -11,4 +11,11 @@ require './lib/checkout.rb'
       expected_output = basket = []
       expect(subject.basket).to eq expected_output
     end
+
+    it 'it should return total value of objects in basket' do
+      expected_output= 54.53
+      subject.scan[1]
+      subject.scan[2]
+      expect(subject.basket).to eq expected_output
+    end
   end
