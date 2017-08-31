@@ -22,15 +22,7 @@ class Checkout
     @basket.push(item_code)
   end
 
-  def cart
-    @basket.push(product)
-
-  def price_objects
-    product.select { |obj| obj[:item][:price] }
+  def total_cost
+    product.inject(0) { |total, (k, v)| total + v.last }
   end
-
-  def total
-      iterate_scan = @basket.group_by(&:itself).map { |k,v| [k, v.count] }.to_h[1]
-    end
-end
 end
